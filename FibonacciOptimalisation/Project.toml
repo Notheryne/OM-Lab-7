@@ -2,3 +2,6 @@ name = "FibonacciOptimalisation"
 uuid = "078d171e-28d9-429e-b120-f6eeb5711f0a"
 authors = ["Notheryne <rydzinski.bartosz.1998@gmail.com>"]
 version = "0.1.0"
+
+[deps]
+Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"

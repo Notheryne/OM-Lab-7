@@ -20,6 +20,7 @@ Args: function, lower bound, upper bound
 Keyword args: accuracy (wanted accuracy), iterations (number of iterations to be performed)
 If both are passed, the passed number will be used, if none, accuracy = 10^(-4) is the default value.
 """
+
 function fibonacci_search(func, lower_bound, upper_bound; accuracy=1e-4, iterations=0)
     if lower_bound > upper_bound
         error("Wrong interval specified. Shouldn't it be (", upper_bound, ", ", lower_bound, ") instead?")
