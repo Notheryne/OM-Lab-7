@@ -7,7 +7,7 @@ function fibonacci(n)
     elseif n == 1 || n == 2
         return 1
     elseif n < 0
-        error("n can't be negative'")
+        error("n can't be negative. Your argument: ", n, ".")
     else
         return fibonacci(n - 1) + fibonacci(n - 2)
     end
@@ -15,67 +15,58 @@ end
 
 
 """
-A function to perform Fibonacci search.
+Functions optimizes single variable function using Fibonacci search.
 Args: function, lower bound, upper bound
-Keyword args: ε (wanted accuracy), n (number of iterations)
-If both are passed, the passed number will be used, if none, ε = 10^(-4) is the default value.
+Keyword args: accuracy (wanted accuracy), iterations (number of iterations to be performed)
+If both are passed, the passed number will be used, if none, accuracy = 10^(-4) is the default value.
 """
-function fibonacci_search(f, a, b; ε=1e-4, n=0)
-    k = 1
-    if n == 0
-        min_fib_n = (2 * (b - a)) / ε
-        n = 0
-        while fibonacci(n) < min_fib_n
-            n += 1
+function fibonacci_search(func, lower_bound, upper_bound; accuracy=1e-4, iterations=0)
+    if lower_bound > upper_bound
+        error("Wrong interval specified. Shouldn't it be (", upper_bound, ", ", lower_bound, ") instead?")
+    end
+    if iterations == 0
+        min_fib_n = (2 * (upper_bound - lower_bound)) / accuracy
+        iterations = 0
+        while fibonacci(iterations) < min_fib_n
+            iterations += 1
         end
     end
+    iteration = 1
     last_x = Inf
     last_f = Inf
-    while k != n
-        proportion = 1 - (fibonacci(n - k + 1)) / fibonacci(n - k + 2)
-        l_k = proportion * (b - a)
-        x1 = a + l_k
-        x2 = b - l_k
+    while iteration != iterations
+        proportion = 1 - (fibonacci(iterations - iteration + 1)) / fibonacci(iterations - iteration + 2)
+        l_k = proportion * (upper_bound - lower_bound)
+        x1 = lower_bound + l_k
+        x2 = upper_bound - l_k
+
         if last_x == x1
             f1 = last_f
-            f2 = f(x2)
+            f2 = func(x2)
         elseif last_x == x2
-            f1 = f(x1)
+            f1 = func(x1)
             f2 = last_f
         else
-            f1 = f(x1)
-            f2 = f(x2)
+            f1 = func(x1)
+            f2 = func(x2)
         end
 
 
         if f1 > f2
-            a = x1
+            lower_bound = x1
             last_f = f1
             last_x = x1
         else
-            b = x2
+            upper_bound = x2
             last_f = f2
             last_x = x2
         end
-        k += 1
+        iteration += 1
     end
     return last_x, last_f
 end
 
 export fibonacci_search
 
-"""
-julia> f1(x) = x^2
-f1 (generic function with 1 method)
 
-julia> f2(x) = x^2 + 3
-f2 (generic function with 1 method)
-
-julia> f3(x) = x^3 + x^2 + x
-f3 (generic function with 1 method)
-
-julia> f4(x) = x^4 - 14x^3 + 60x^2 - 70x
-f4 (generic function with 1 method)
-
-"""
 end # module
