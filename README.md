@@ -11,6 +11,20 @@ must be calculated in every iteration.
 
 The section is reduced to
 
-<img src="https://latex.codecogs.com/gif.latex?\frac{2}{F_(N+1)} * (upperbound - lowerbound)" /> 
+`[2 / F(N + 1)] * (upper_bound - lower_bound)`
 
 which requires `n` iterations.
+
+
+## Usage
+To use this functionality you need to:
+1. Run julia using `.../OM-Lab-7$ julia` in terminal
+2. Press `]` to go into Pkg
+3. Execute `activate FibonacciOptimization/`
+4. Go back into julia and type `using FibonacciOptimization`
+5. Now you can call `fibonacci_search`.
+
+## Tests
+To run tests:
+You need to either follow Usage up to step 3, and then type `test`,
+or just execute `.../OM-Lab-7$ julia run.jl`

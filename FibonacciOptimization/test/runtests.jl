@@ -1,4 +1,4 @@
-using FibonacciOptimalisation, Test
+using FibonacciOptimization, Test
 
 @testset "fibonacci with accuracy" begin
     lower_bound, upper_bound = -1, 1

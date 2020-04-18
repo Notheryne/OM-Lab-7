@@ -1,4 +1,4 @@
-module FibonacciOptimalisation
+module FibonacciOptimization
 
 "A function to generate n-th number of fibonacci series"
 function fibonacci(n)
